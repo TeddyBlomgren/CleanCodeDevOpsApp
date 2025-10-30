@@ -1,10 +1,10 @@
 name: Manual .NET Build
 
 on:
-  workflow_dispatch:
+  workflow_dispatch
 
 jobs:
-  build:
+  print-runtime-context:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,3 +27,25 @@ jobs:
           echo "🌴 Branch: ${{ github.ref }}"
 
       - *echo-template
+
+  build-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5.0.0
+
+      - name: Install .NET 9
+        uses: actions/setup-dotnet@v5.0.0
+        with: 
+          dotnet-version: '9.0.x'
+
+      - name: Build project
+        run: dotnet build CleanCodeDevOpsApp/CleanCodeDevOpsApp.csproj
+
+      - name: Run code
+        run: dotnet run --project CleanCodeDevOpsApp/CleanCodeDevOpsApp.csproj
+      
+      
+
+     
