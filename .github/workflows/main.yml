@@ -25,6 +25,7 @@ jobs:
           echo "🧑‍🦳 Actor: ${{ github.actor }}"
           echo "🦵 Run number: ${{ github.run_number }}"
           echo "🌴 Branch: ${{ github.ref }}"
+          echo "🌳 C# Files: $(find . -name "*.cs" | wc -l)"
 
       - *echo-template
 
